@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:39:28 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:45:29 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	parsing(char **arg)
 		number_check(arg[4]) &&
 		number_check(arg[5]) &&
 		number_check(arg[6]) &&
-		!(strcmp(arg[7], "fifo") || strcmp(arg[7], "edf"))
+		number_check(arg[7]) &&
+		(!strcmp(arg[8], "fifo") || !strcmp(arg[8], "edf"))
 	)
 	{
 		printf("number of coder [OK]...\n");
