@@ -3,27 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: A.kevin <A.kevin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:14:39 by A.kevin          ###   ########.fr       */
+/*   Updated: 2026/07/03 22:39:28 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void	parsing(char **arg)
+int	parsing(char **arg)
 {
-	int	coder;
-	int bot;
 	if (
 		number_check(arg[1]) &&
-		number_check(arg[2])
+		number_check(arg[2]) &&
+		number_check(arg[3]) &&
+		number_check(arg[4]) &&
+		number_check(arg[5]) &&
+		number_check(arg[6]) &&
+		!(strcmp(arg[7], "fifo") || strcmp(arg[7], "edf"))
 	)
 	{
-		coder = number_check(arg[1]);
-		bot = number_check(arg[2]);
-		printf("number of coder: %d\n", coder);
-		printf("burn out time: %d\n", bot);
+		printf("number of coder [OK]...\n");
+		printf("burn out time [OK]...\n");
+		printf("time to compile [OK]...\n");
+		printf("time to debug [OK]...\n");
+		printf("time to refractor [OK]...\n");
+		printf("dongle_cooldown [OK]...\n");
+		printf("Shedule [OK]...\n");
+		return (1);
 	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   codexion.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: A.kevin <A.kevin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:12:56 by A.kevin          ###   ########.fr       */
+/*   Updated: 2026/07/03 22:41:28 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include <string.h>
 
 int		is_digit(char c);
 int		ft_error(char *message);
 int	    number_check(char *coder);
-void	parsing(char **argv);
+int 	parsing(char **argv);
 
 
 #endif

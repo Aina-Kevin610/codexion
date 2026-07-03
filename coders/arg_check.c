@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: A.kevin <A.kevin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:40:12 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:12:38 by A.kevin          ###   ########.fr       */
+/*   Updated: 2026/07/03 22:35:45 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ int	number_check(char *coder)
 			return (0);
 		}
 		i++;
-	}
-	if (i <= 0)
-	{
-		ft_error("must be > 0\n");
-		return (0);
 	}
 	return (1);
 }
