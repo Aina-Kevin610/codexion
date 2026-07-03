@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:43:43 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 23:02:25 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 9)
+	struct timeval tv;
+
+	gettimeofday(&tv, NULL);
+    if (argc != 9 && !parsing(argv))
     {
         ft_error("Invalid number of arguments!");
-        return 1;
+        return (1);
     }
-    if (parsing(argv))    
-        printf("PARSING [OK]...");
-    else
-        printf("PARSING [KO]...");
-        
-    return 0;
+	printf("seconde: %ld\n", tv.tv_sec);
+	printf("microseconde: %ld", tv.tv_usec);
+    
+    return (0);
 }

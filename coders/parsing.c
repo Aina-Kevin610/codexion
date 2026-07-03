@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:47:47 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:53:47 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	number_check(char *coder)
 	{
 		if (!is_digit(coder[i]))
 		{
-			ft_error("must be a number and not null");
+			ft_error("must be a number and not null\n");
 			return (0);
 		}
 		i++;

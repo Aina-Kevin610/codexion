@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:50:54 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:57:49 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
 
 int		is_digit(char c);
 int 	parsing(char **argv);
