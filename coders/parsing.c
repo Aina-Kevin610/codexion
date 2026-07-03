@@ -6,11 +6,41 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:45:29 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:47:47 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+int is_digit(char c)
+{
+    return (c <= '9' && c >= '0');
+}
+
+int	ft_error(char *message)
+{
+	int	result;
+
+	result = fprintf(stderr, "Error - %s", message);
+	return (result);
+}
+
+int	number_check(char *coder)
+{
+	int	i;
+
+	i = 0;
+	while (coder[i])
+	{
+		if (!is_digit(coder[i]))
+		{
+			ft_error("must be a number and not null");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	parsing(char **arg)
 {
@@ -25,13 +55,6 @@ int	parsing(char **arg)
 		(!strcmp(arg[8], "fifo") || !strcmp(arg[8], "edf"))
 	)
 	{
-		printf("number of coder [OK]...\n");
-		printf("burn out time [OK]...\n");
-		printf("time to compile [OK]...\n");
-		printf("time to debug [OK]...\n");
-		printf("time to refractor [OK]...\n");
-		printf("dongle_cooldown [OK]...\n");
-		printf("Shedule [OK]...\n");
 		return (1);
 	}
 	return (0);

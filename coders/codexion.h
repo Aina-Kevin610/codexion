@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:41:28 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:50:54 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
-# include <stdbool.h>
 # include <stdlib.h>
 # include <string.h>
 
 int		is_digit(char c);
+int 	parsing(char **argv);
 int		ft_error(char *message);
 int	    number_check(char *coder);
-int 	parsing(char **argv);
 
 
 #endif
