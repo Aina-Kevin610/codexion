@@ -44,18 +44,16 @@ int	number_check(char *coder)
 
 int	parsing(char **arg)
 {
-	if (
-		number_check(arg[1]) &&
-		number_check(arg[2]) &&
-		number_check(arg[3]) &&
-		number_check(arg[4]) &&
-		number_check(arg[5]) &&
-		number_check(arg[6]) &&
-		number_check(arg[7]) &&
-		(!strcmp(arg[8], "fifo") || !strcmp(arg[8], "edf"))
-	)
-	{
-		return (1);
-	}
-	return (0);
+  int i;
+
+  i = 1;
+	while (arg[i])
+  {
+    if (i == 8 && strcmp(arg[i], "fifo"))
+      return (0);
+    else
+      number_check(arg[i]);
+    i++;
+  }
+	return (1);
 }

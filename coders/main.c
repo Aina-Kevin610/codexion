@@ -17,13 +17,13 @@ int main(int argc, char *argv[])
 	struct timeval tv;
 
 	gettimeofday(&tv, NULL);
-    if (argc != 9 && !parsing(argv))
-    {
-        ft_error("Invalid number of arguments!");
-        return (1);
-    }
+  if (argc != 9 || !parsing(argv))
+  {
+    ft_error("Invalid number of arguments!");
+    return (0);
+  }
 	printf("seconde: %ld\n", tv.tv_sec);
 	printf("microseconde: %ld", tv.tv_usec);
-    
-    return (0);
+  printf("hello");
+  return (0);
 }
