@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 23:02:25 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 08:36:52 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int main(int argc, char *argv[])
 	gettimeofday(&tv, NULL);
   if (argc != 9 || !parsing(argv))
   {
-    ft_error("Invalid number of arguments!");
+    ft_error("Invalid arguments!");
     return (0);
   }
 	printf("seconde: %ld\n", tv.tv_sec);
-	printf("microseconde: %ld", tv.tv_usec);
+	printf("microseconde: %ld\n", tv.tv_usec);
   printf("hello");
   return (0);
 }

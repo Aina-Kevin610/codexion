@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:53:47 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 08:49:22 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,34 @@ int	ft_error(char *message)
 	return (result);
 }
 
-int	number_check(char *coder)
+int	number_check(char *number)
 {
 	int	i;
 
 	i = 0;
-	while (coder[i])
+	while (number[i])
 	{
-		if (!is_digit(coder[i]))
-		{
-			ft_error("must be a number and not null\n");
+		if (!is_digit(number[i]))
 			return (0);
-		}
 		i++;
 	}
+	if (atoi(number) <= 0)
+		return (0);
 	return (1);
 }
 
 int	parsing(char **arg)
 {
-  int i;
+	int	i;
 
-  i = 1;
-	while (arg[i])
-  {
-    if (i == 8 && strcmp(arg[i], "fifo"))
-      return (0);
-    else
-      number_check(arg[i]);
-    i++;
-  }
+	i = 1;
+	while (arg[i] && i <= 7)
+	{
+		if (!number_check(arg[i]))
+			return (0);
+		i++;
+	}
+	if (strcmp(arg[8], "fifo") && strcmp(arg[8], "edf"))
+		return (0);
 	return (1);
 }
