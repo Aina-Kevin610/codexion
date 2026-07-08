@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/08 08:30:41 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/08 15:27:01 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	parsing(char **arg)
 	return (1);
 }
 
-t_coder	*creat_coder(int num_dongle, int num)
+t_coder	*create_coder(int num_dongle, int num)
 {
 	t_coder	*new_coder;
 
@@ -70,7 +70,7 @@ t_coder	*creat_coder(int num_dongle, int num)
 	return (new_coder);
 }
 
-void	*add_coder(t_coder *coder, t_coder *new_coder)
+void	add_coder(t_coder *coder, t_coder *new_coder)
 {
 	t_coder *temp;
 
@@ -82,13 +82,38 @@ void	*add_coder(t_coder *coder, t_coder *new_coder)
 	temp->next = new_coder;
 }
 
-// t_coder	*sat_coder(int coder_number)
-// {
-// 	int	i;
+t_coder	*sat_coder(int coder_number, t_coder *coder)
+{
+	int		i;
+	t_coder	*new_coder;
 
-// 	i = 0;
-// 	while (i < coder_number)
-// 	{
-		
-// 	}
-// }
+	i = 0;
+	if (!coder)
+	{
+		coder = create_coder(0, 0);
+		i++;
+	}		
+	new_coder = NULL;
+	while (i < coder_number)
+	{
+		new_coder = create_coder(0, i);
+		add_coder(coder, new_coder);
+		i++;
+	}
+	return (coder);
+}
+
+void	print_coder(t_coder *coder)
+{
+	t_coder	*temp;
+
+	temp = coder;
+	if (!coder)
+		return;
+	while (temp->next)
+	{
+		printf("(coder %d) %d\n", temp->number, temp->dongle_hold);
+		temp = temp->next;
+	}
+	printf("(coder %d) %d\n", temp->number, temp->dongle_hold);
+}
