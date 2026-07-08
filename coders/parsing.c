@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/08 15:27:01 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/08 15:31:01 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ t_coder	*create_coder(int num_dongle, int num)
 	t_coder	*new_coder;
 
 	new_coder = (t_coder *)malloc(sizeof(t_coder));
-	if (!new_coder)
-		return (0);
+	if (!new_coder || num_dongle > 2 || num_dongle <= 0)
+		return (NULL);
 	new_coder->number = num;
 	new_coder->dongle_hold = num_dongle;
 	new_coder->next = NULL;
@@ -87,14 +87,14 @@ t_coder	*sat_coder(int coder_number, t_coder *coder)
 	int		i;
 	t_coder	*new_coder;
 
-	i = 0;
+	i = 1;
 	if (!coder)
 	{
 		coder = create_coder(0, 0);
 		i++;
 	}		
 	new_coder = NULL;
-	while (i < coder_number)
+	while (i <= coder_number)
 	{
 		new_coder = create_coder(0, i);
 		add_coder(coder, new_coder);
