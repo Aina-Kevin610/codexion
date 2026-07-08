@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/08 08:28:52 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/08 08:30:41 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_coder	*creat_coder(int num_dongle, int num)
 	return (new_coder);
 }
 
-t_coder	*add_coder(t_coder *coder)
+void	*add_coder(t_coder *coder, t_coder *new_coder)
 {
 	t_coder *temp;
 
@@ -79,7 +79,7 @@ t_coder	*add_coder(t_coder *coder)
 	{
 		temp = temp->next;
 	}
-	temp-> next	= 
+	temp->next = new_coder;
 }
 
 // t_coder	*sat_coder(int coder_number)
