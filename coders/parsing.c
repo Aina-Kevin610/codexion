@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/07 08:49:22 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/08 08:28:52 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,39 @@ int	parsing(char **arg)
 		return (0);
 	return (1);
 }
+
+t_coder	*creat_coder(int num_dongle, int num)
+{
+	t_coder	*new_coder;
+
+	new_coder = (t_coder *)malloc(sizeof(t_coder));
+	if (!new_coder)
+		return (0);
+	new_coder->number = num;
+	new_coder->dongle_hold = num_dongle;
+	new_coder->next = NULL;
+	return (new_coder);
+}
+
+t_coder	*add_coder(t_coder *coder)
+{
+	t_coder *temp;
+
+	temp = coder;
+	while(temp->next)
+	{
+		temp = temp->next;
+	}
+	temp-> next	= 
+}
+
+// t_coder	*sat_coder(int coder_number)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < coder_number)
+// 	{
+		
+// 	}
+// }

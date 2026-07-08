@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/03 22:57:49 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/08 08:06:31 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@
 # include <string.h>
 # include <sys/time.h>
 
+typedef struct t_coder
+{
+    int     dongle_hold;
+	int		number;
+    t_coder	*next;
+}			t_coder;
+
 int		is_digit(char c);
 int 	parsing(char **argv);
 int		ft_error(char *message);
-int	    number_check(char *coder);
-
+int		number_check(char *coder);
+t_coder	*creat_coder(int num_dongle, int num);
 
 #endif

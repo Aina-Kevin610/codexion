@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/07 08:36:52 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 09:02:18 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int main(int argc, char *argv[])
 {
+	t_coder *coder;
 	struct timeval tv;
 
+	coder = NULL;
 	gettimeofday(&tv, NULL);
-  if (argc != 9 || !parsing(argv))
-  {
-    ft_error("Invalid arguments!");
-    return (0);
-  }
+	if (argc != 9 || !parsing(argv))
+	{
+		ft_error("Invalid arguments!");
+		return (0);
+	}
 	printf("seconde: %ld\n", tv.tv_sec);
 	printf("microseconde: %ld\n", tv.tv_usec);
-  printf("hello");
-  return (0);
+	coder = sat_coder(argv(1));
+	return (0);
 }
