@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 11:49:07 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:57:51 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ typedef struct s_args
 	int			refactor;
 	int			nb_compiles;
 	int			dongle_cooldown;
+	int			error;
 	t_scheduler	scheduler;
 }	t_args;
+
+typedef struct s_all
+{
+	t_args	arguments;
+}	t_all;
 
 int		is_digit(char c);
 int 	check_arg(char **argv);

@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 11:50:42 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:00:42 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 int main(int argc, char *argv[])
 {
-	t_args	arg;
+	t_all	all;
 
 	if (argc != 9)
 	{
 		ft_error("Invalid arguments!");
 		return (0);
 	}
-	arg = parsing(argv, &arg);
-	print_args(&arg);
+	all.arguments = parsing(argv, &all.arguments);
+	if (all.arguments.error)
+	{
+		ft_error("Invalid arguments!");
+		return (0);
+	}
+	print_args(&(all.arguments));
 
 	return (0);
 }
