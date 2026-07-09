@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 09:40:20 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 11:50:29 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,40 @@ int	number_check(char *number)
 			return (0);
 		i++;
 	}
-	if (atoi(number) <= 0)
+	if (atoi(number) <= 0 && atoi("2147483647") < atoi(number))
 		return (0);
 	return (1);
 }
 
-int	parsing(char **arg)
+void	assign_arg(char **init, t_args *arg)
+{
+	arg->coders = atoi(init[1]);
+	arg->burnout = atoi(init[2]);
+	arg->compile = atoi(init[3]);
+	arg->debug = atoi(init[4]);
+	arg->refactor = atoi(init[5]);
+	arg->nb_compiles = atoi(init[6]);
+	arg->dongle_cooldown = atoi(init[7]);
+	if (!strcmp(init[8], "fifo"))
+	{
+		arg->scheduler.fifo = 1;
+		arg->scheduler.edf = 0;
+	}
+	else if (!strcmp(init[8], "edf"))
+	{
+		arg->scheduler.fifo = 0;
+		arg->scheduler.edf = 1;
+	}
+}
+
+t_args	parsing(char **argv, t_args *arg)
+{
+	if (check_arg(argv))
+		assign_arg(argv, arg);
+	return (*arg);
+}
+
+int	check_arg(char **arg)
 {
 	int	i;
 
@@ -98,19 +126,4 @@ t_coder	*sat_coder(int coder_number, t_coder *coder)
 		i++;
 	}
 	return (coder);
-}
-
-void	print_coder(t_coder *coder)
-{
-	t_coder	*temp;
-
-	temp = coder;
-	if (!coder)
-		return;
-	while (temp->next)
-	{
-		printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
-		temp = temp->next;
-	}
-	printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
 }

@@ -4,6 +4,7 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror -lpthread
 SRCS = coders/main.c \
 	   coders/parsing.c \
+	   coders/utils.c
 
 all:
 	$(CC) $(FLAGS) $(SRCS)
