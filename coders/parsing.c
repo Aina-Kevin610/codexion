@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/08 15:31:01 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 09:40:20 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ int	parsing(char **arg)
 	return (1);
 }
 
-t_coder	*create_coder(int num_dongle, int num)
+t_coder	*create_coder(int id)
 {
 	t_coder	*new_coder;
 
 	new_coder = (t_coder *)malloc(sizeof(t_coder));
-	if (!new_coder || num_dongle > 2 || num_dongle <= 0)
+	if (!new_coder)
 		return (NULL);
-	new_coder->number = num;
-	new_coder->dongle_hold = num_dongle;
+	new_coder->id_coder = id;
+	new_coder->dongle_hold = 0;
 	new_coder->next = NULL;
 	return (new_coder);
 }
 
-void	add_coder(t_coder *coder, t_coder *new_coder)
+void	add_coder(t_coder *coder)
 {
 	t_coder *temp;
 
@@ -79,25 +79,22 @@ void	add_coder(t_coder *coder, t_coder *new_coder)
 	{
 		temp = temp->next;
 	}
-	temp->next = new_coder;
+	temp->next = create_coder(0);
 }
 
 t_coder	*sat_coder(int coder_number, t_coder *coder)
 {
 	int		i;
-	t_coder	*new_coder;
 
 	i = 1;
 	if (!coder)
 	{
-		coder = create_coder(0, 0);
+		coder = create_coder(0);
 		i++;
-	}		
-	new_coder = NULL;
+	}
 	while (i <= coder_number)
 	{
-		new_coder = create_coder(0, i);
-		add_coder(coder, new_coder);
+		add_coder(coder);
 		i++;
 	}
 	return (coder);
@@ -112,8 +109,8 @@ void	print_coder(t_coder *coder)
 		return;
 	while (temp->next)
 	{
-		printf("(coder %d) %d\n", temp->number, temp->dongle_hold);
+		printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
 		temp = temp->next;
 	}
-	printf("(coder %d) %d\n", temp->number, temp->dongle_hold);
+	printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
 }
