@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 13:57:51 by airandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:30:31 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,12 @@ typedef struct s_all
 	t_args	arguments;
 }	t_all;
 
-int		is_digit(char c);
-int 	check_arg(char **argv);
-int		ft_error(char *message);
-int		number_check(char *coder);
-t_args	parsing(char **argument, t_args *arg);
-t_coder	*create_coder(int id);
-t_coder	*sat_coder(int coder_number, t_coder *coder);
-void	assign_arg(char **init, t_args *arg);
-void	add_coder(t_coder *coder);
-// void	print_coder(t_coder *coder);
-void 	print_args(t_args *args);
-
+int			is_digit(char c);
+int 		check_arg(char **argv);
+int			ft_error(char *message);
+int			number_check(char *coder);
+void 		print_args(t_args *args);
+void		assign_arg(char **init, t_args *arg);
+t_args		parsing(char **argument, t_args *arg);
+long long	get_actual_time();
 #endif

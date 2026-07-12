@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 15:25:28 by airandri         ###   ########.fr       */
+/*   Created: 2026/07/09 14:21:32 by airandri          #+#    #+#             */
+/*   Updated: 2026/07/09 14:38:58 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int main(int argc, char *argv[])
+long long get_actual_time()
 {
-	t_all	all;
-	long long actual;
+	struct timeval  time;
 
-	actual = get_actual_time();
-	if (argc != 9)
-	{
-		ft_error("Invalid arguments!");
-		return (0);
-	}
-	all.arguments = parsing(argv, &all.arguments);
-	printf("%llu\n", get_actual_time() - actual);
-	if (all.arguments.error)
-	{
-		ft_error("Invalid arguments!");
-		return (0);
-	}
-	print_args(&(all.arguments));
-
-	return (0);
+	gettimeofday(&time, NULL);
+	return (time.tv_usec);
 }
