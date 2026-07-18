@@ -46,17 +46,17 @@ int	ft_error(char *message)
 	return (result);
 }
 
-// void	print_coder(t_coder *coder)
-// {
-// 	t_coder	*temp;
+void	print_coders(t_coder *coder)
+{
+ 	t_coder	*temp;
 
-// 	temp = coder;
-// 	if (!coder)
-// 		return;
-// 	while (temp->next)
-// 	{
-// 		printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
-// 		temp = temp->next;
-// 	}
-// 	printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
-// }
+ 	temp = coder;
+ 	if (!coder)
+ 		return;
+ 	while (temp->next)
+ 	{
+ 		printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
+ 		temp = temp->next;
+ 	}
+ 	printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
+}

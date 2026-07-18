@@ -47,7 +47,8 @@ typedef struct s_args
 
 typedef struct s_all
 {
-	t_args	arguments;
+	t_args	*arguments;
+  t_coder *coder;
 }	t_all;
 
 int			is_digit(char c);
@@ -55,7 +56,12 @@ int 		check_arg(char **argv);
 int			ft_error(char *message);
 int			number_check(char *coder);
 void 		print_args(t_args *args);
+void    print_coders(t_coder *coder);
 void		assign_arg(char **init, t_args *arg);
-t_args		parsing(char **argument, t_args *arg);
+void    debug(int time);
+void    compile(int time);
+void    refactor(int time);
+void    linking_coder(t_all *all);
+t_args	parsing(char **argument, t_args *arg);
 long long	get_actual_time();
 #endif

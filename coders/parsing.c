@@ -12,6 +12,41 @@
 
 #include "codexion.h"
 
+t_coder *create_coder()
+{
+  t_coder *new_coder;
+  new_coder = (t_coder *) malloc(sizeof(t_coder));
+  if (!new_coder)
+    return NULL;
+  new_coder->dongle_hold = 0;
+  new_coder->next = 0;
+  return (new_coder);
+}
+
+void  add_coder(t_coder *coder)
+{
+  t_coder *tmp;
+
+  if (!coder)
+    return;
+  tmp = coder;
+  while(tmp->next)
+    tmp = tmp->next;
+  tmp->next = create_coder();
+}
+
+void  linking_coder(t_all *all)
+{
+  int i;
+
+  i = 0;
+  while(i < (int)all->arguments->coders)
+  {
+    add_coder(all->coder);
+    i++;
+  }
+}
+
 int	number_check(char *number)
 {
 	int	i;
