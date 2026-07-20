@@ -16,11 +16,14 @@ int main(int argc, char *argv[])
 {
 	t_all	all;
   t_args arguments;
+  long long time_0;
 
   pthread_mutex_init(&all.lock, NULL);
   all.arguments = &arguments;
   all.coder = NULL;
   all.stop = 0;
+  time_0 = get_actual_time();
+  printf("%lld\n", time_0);
 	if (argc != 9)
 	{
 		ft_error("Invalid arguments!");
