@@ -28,7 +28,9 @@ typedef struct t_scheduler
 typedef struct s_coder
 {
 	int				dongle_hold;
+  int       compile_done;
 	pthread_t		id_coder;
+  long long   last_compile_start;
 	struct s_coder	*next;
 }	t_coder;
 
@@ -49,6 +51,9 @@ typedef struct s_all
 {
 	t_args	*arguments;
   t_coder *coder;
+  int     stop;
+  long long start_time;
+  pthread_mutex_t lock;
 }	t_all;
 
 int			is_digit(char c);

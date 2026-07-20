@@ -1,26 +1,36 @@
-NAME = main.c
-C ?= "update:general"
-CC = cc
-FLAGS = -Wall -Wextra -Werror -lpthread
-SRCS = coders/main.c \
-	   coders/parsing.c \
-	   coders/utils.c \
-	   coders/time.c
+NAME		= codexion
 
-all:
-	$(CC) $(FLAGS) $(SRCS)
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -pthread
+
+SRCS_DIR	= coders
+OBJS_DIR	= objs
+
+SRCS		= main.c \
+			  parsing.c \
+			  utils.c \
+			  time.c \
+			  action.c \
+			  process.c
+
+OBJS		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
 clean:
-	rm *.o
+	rm -rf $(OBJS_DIR)
 
-fclean:
-	rm a.out
-
-send:
-	git add .
-	git commit -m $(C)
-	git push
-
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 

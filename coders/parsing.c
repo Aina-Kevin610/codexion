@@ -15,9 +15,9 @@
 t_coder *create_coder()
 {
   t_coder *new_coder;
-  new_coder = (t_coder *) malloc(sizeof(t_coder));
+new_coder = (t_coder *) malloc(sizeof(t_coder));
   if (!new_coder)
-    return NULL;
+    return (0);
   new_coder->dongle_hold = 0;
   new_coder->next = 0;
   return (new_coder);
@@ -42,7 +42,10 @@ void  linking_coder(t_all *all)
   i = 0;
   while(i < (int)all->arguments->coders)
   {
-    add_coder(all->coder);
+    if(all->coder)
+      add_coder(all->coder);
+    else
+      all->coder = create_coder();
     i++;
   }
 }

@@ -52,7 +52,10 @@ void	print_coders(t_coder *coder)
 
  	temp = coder;
  	if (!coder)
- 		return;
+  {
+    printf("No coder found");
+    return;
+  }
  	while (temp->next)
  	{
  		printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);

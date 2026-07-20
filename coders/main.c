@@ -15,14 +15,12 @@
 int main(int argc, char *argv[])
 {
 	t_all	all;
-	long long actual;
   t_args arguments;
 
+  pthread_mutex_init(&all.lock, NULL);
   all.arguments = &arguments;
   all.coder = NULL;
-
-	actual = get_actual_time();
-  printf("%llu", actual);
+  all.stop = 0;
 	if (argc != 9)
 	{
 		ft_error("Invalid arguments!");
@@ -35,8 +33,11 @@ int main(int argc, char *argv[])
 		return (0);
 	}
   linking_coder(&all);
-	//print_args(all.arguments);
-  print_coders(all.coder);
-  printf("EVETYTHING IS DONE CORECTLY!");
+	while(!all.stop)
+  {
+    sleep(3);
+    all.stop = 1;
+  }
+  pthread_mutex_destroy(&all.lock);
 	return (0);
 }
