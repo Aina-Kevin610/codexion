@@ -12,10 +12,28 @@
 
 #include "codexion.h"
 
+void init_coder_id(t_coder *coder)
+{
+  t_coder *tmp;
+  int i;
+
+  if(!coder)
+    return;
+  i = 1;
+  tmp = coder;
+  while(tmp)
+  {
+    tmp->id = i;
+    i++;
+    tmp->compile_done = 0;
+    tmp = tmp->next;
+  }
+}
+
 t_coder *create_coder()
 {
   t_coder *new_coder;
-new_coder = (t_coder *) malloc(sizeof(t_coder));
+  new_coder = (t_coder *) malloc(sizeof(t_coder));
   if (!new_coder)
     return (0);
   new_coder->dongle_hold = 0;

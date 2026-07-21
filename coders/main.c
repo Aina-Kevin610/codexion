@@ -36,10 +36,14 @@ int main(int argc, char *argv[])
 		return (0);
 	}
   linking_coder(&all);
+  init_coder_id(all.coder);
 	while(!all.stop)
   {
-    sleep(3);
+    process(&all);
     all.stop = 1;
+    sleep(1);
+    process(&all);
+    sleep(1);
   }
   pthread_mutex_destroy(&all.lock);
 	return (0);

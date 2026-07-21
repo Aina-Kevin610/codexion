@@ -27,32 +27,33 @@ typedef struct t_scheduler
 
 typedef struct s_coder
 {
-	int				dongle_hold;
-  int       compile_done;
-	pthread_t		id_coder;
-  long long   last_compile_start;
+  pthread_t         thread;
+	int				      dongle_hold;
+  int             compile_done;
+  int     		    id;
+  long long       last_compile_start;
 	struct s_coder	*next;
 }	t_coder;
 
 typedef struct s_args
 {
-	int			coders;
-	int			burnout;
-	int			compile;
-	int			debug;
-	int			refactor;
-	int			nb_compiles;
-	int			dongle_cooldown;
-	int			error;
+	int			    coders;
+	int			    burnout;
+	int			    compile;
+	int			    debug;
+	int			    refactor;
+	int			    nb_compiles;
+	int			    dongle_cooldown;
+	int			    error;
 	t_scheduler	scheduler;
 }	t_args;
 
 typedef struct s_all
 {
-	t_args	*arguments;
-  t_coder *coder;
-  int     stop;
-  long long start_time;
+	t_args	        *arguments;
+  t_coder         *coder;
+  int             stop;
+  long long       start_time;
   pthread_mutex_t lock;
 }	t_all;
 
@@ -63,10 +64,13 @@ int			number_check(char *coder);
 void 		print_args(t_args *args);
 void    print_coders(t_coder *coder);
 void		assign_arg(char **init, t_args *arg);
-void    debug(int time);
-void    compile(int time);
-void    refactor(int time);
-void    linking_coder(t_all *all);
+void    debug(t_coder *coder);
+void    compile(t_coder *coder);
+void    refactor(t_coder *coder);
+void    linking_coder(t_all *coder);
+void    process(t_all *all);
+void    init_coder_id(t_coder *coder);
+
 t_args	parsing(char **argument, t_args *arg);
 long long	get_actual_time();
 #endif

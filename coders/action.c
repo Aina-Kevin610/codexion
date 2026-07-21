@@ -1,23 +1,24 @@
 #include "codexion.h"
 
-void  compile(int time_to_compile)
+void  compile(t_coder *coder)
 {
-  printf("Compiling...");
-  usleep(time_to_compile);
-  printf("done!");
+  printf("Compiling...\n");
+  sleep(1);
+  printf("%d", coder->dongle_hold);
+  printf("done\n");
 }
 
-void  debug(int time_to_debug)
+void  debug(t_coder *coder)
 {
-  printf("Debuging...");
-  usleep(time_to_debug);
-  printf("done!");
+  printf("Debuging...\n");
+  usleep(2+coder->dongle_hold);
+  printf("done!\n");
 }
 
-void  refactor(int time_to_refactor)
+void  refactor(t_coder *coder)
 {
-  printf("Rfactoring...");
-  usleep(time_to_refactor);
-  printf("done!");
+  printf("Refactoring...\n");
+  usleep(2+coder->dongle_hold);
+  printf("done!\n");
 }
 

@@ -58,8 +58,8 @@ void	print_coders(t_coder *coder)
   }
  	while (temp->next)
  	{
- 		printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
+ 		printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
  		temp = temp->next;
  	}
- 	printf("(coder %lu) %d\n", temp->id_coder, temp->dongle_hold);
+ 	printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
 }
