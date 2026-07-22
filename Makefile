@@ -11,7 +11,8 @@ SRCS		= main.c \
 			  utils.c \
 			  time.c \
 			  action.c \
-			  process.c
+			  process.c \
+				monitor.c
 
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

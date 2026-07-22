@@ -16,15 +16,15 @@ static void coder_thread(t_coder *coder)
     return;
   self = coder;
   routine(self);
-
 }
 
 void  process(t_all *all)
 {
   t_coder *tmp;
-  tmp = all->coder;
-  if (!all || !tmp)
+
+  if (!all)
     return;
+  tmp = all->coder;
   printf("processing...\n");
   while(tmp)
   {

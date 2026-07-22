@@ -27,10 +27,11 @@ typedef struct t_scheduler
 
 typedef struct s_coder
 {
-  pthread_t         thread;
+  pthread_t       thread;
 	int				      dongle_hold;
   int             compile_done;
   int     		    id;
+  int             is_burnout;
   long long       last_compile_start;
 	struct s_coder	*next;
 }	t_coder;
@@ -61,6 +62,7 @@ int			is_digit(char c);
 int 		check_arg(char **argv);
 int			ft_error(char *message);
 int			number_check(char *coder);
+int     is_simulation_finished(t_all *all);
 void 		print_args(t_args *args);
 void    print_coders(t_coder *coder);
 void		assign_arg(char **init, t_args *arg);
