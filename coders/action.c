@@ -2,16 +2,16 @@
 
 void  compile(t_coder *coder)
 {
-  printf("Compiling...\n");
+  printf("%d is Compiling...\n", coder->id);
 }
 
 void  debug(t_coder *coder)
 {
-  printf("Debuging...\n");
+  printf("%d is Debuging...\n", coder->id);
 }
 
 void  refactor(t_coder *coder)
 {
-  printf("Refactoring...\n");
+  printf("%d is Refactoring...\n", coder->id);
 }
 

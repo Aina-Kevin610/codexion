@@ -67,6 +67,7 @@ void  linking_coder(t_all *all)
     i++;
   }
   init_coder_id(all->coder);
+  all->coder->arguments = all->arguments;
 }
 
 int	number_check(char *number)

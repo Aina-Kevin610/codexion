@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 		ft_error("Invalid arguments!");
 		return (0);
 	}
-	*(all.arguments) = parsing(argv, all.arguments);	
+	*(all.arguments) = parsing(argv, all.arguments);
 	if (all.arguments->error)
 	{
 		ft_error("Invalid arguments!");
@@ -37,7 +37,12 @@ int main(int argc, char *argv[])
 	}
   linking_coder(&all);
   init_coder_id(all.coder);
-  process(&all);
+  while (!all.stop)
+  {
+    process(&all);
+    is_simulation_finished(&all);
+  }
+  free_coders(all.coder);
   pthread_mutex_destroy(&all.lock);
 	return (0);
 }

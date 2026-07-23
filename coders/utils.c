@@ -63,3 +63,15 @@ void	print_coders(t_coder *coder)
  	}
  	printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
 }
+
+void	free_coders(t_coder *coder)
+{
+	t_coder	*tmp;
+
+	while (coder)
+	{
+		tmp = coder->next;
+		free(coder);
+		coder = tmp;
+	}
+}

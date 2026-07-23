@@ -3,9 +3,12 @@
 static void routine(t_coder *coder)
 {
   compile(coder);
+  usleep(coder->arguments->compile);
   coder->compile_done++;
   debug(coder);
+  usleep(coder->arguments->debug);
   refactor(coder);
+  usleep(coder->arguments->refactor);
 }
 
 static void coder_thread(t_coder *coder)

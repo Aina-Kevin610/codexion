@@ -25,17 +25,6 @@ typedef struct t_scheduler
 	int	edf;
 }	t_scheduler;
 
-typedef struct s_coder
-{
-  pthread_t       thread;
-	int				      dongle_hold;
-  int             compile_done;
-  int     		    id;
-  int             is_burnout;
-  long long       last_compile_start;
-	struct s_coder	*next;
-}	t_coder;
-
 typedef struct s_args
 {
 	int			    coders;
@@ -48,6 +37,20 @@ typedef struct s_args
 	int			    error;
 	t_scheduler	scheduler;
 }	t_args;
+
+
+typedef struct s_coder
+{
+  pthread_t       thread;
+	int				      dongle_hold;
+  int             compile_done;
+  int     		    id;
+  int             is_burnout;
+  t_args          *arguments;
+  long long       last_compile_start;
+	struct s_coder	*next;
+}	t_coder;
+
 
 typedef struct s_all
 {
@@ -72,6 +75,7 @@ void    refactor(t_coder *coder);
 void    linking_coder(t_all *coder);
 void    process(t_all *all);
 void    init_coder_id(t_coder *coder);
+void    free_coders(t_coder *coder);
 
 t_args	parsing(char **argument, t_args *arg);
 long long	get_actual_time();
