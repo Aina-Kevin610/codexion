@@ -36,12 +36,14 @@ int main(int argc, char *argv[])
 		return (0);
 	}
   linking_coder(&all);
-  init_coder_id(all.coder);
+  //init_coder_id(all.coder);
+  /*
   while (!all.stop)
   {
     process(&all);
     is_simulation_finished(&all);
   }
+  */
   free_coders(all.coder);
   pthread_mutex_destroy(&all.lock);
 	return (0);

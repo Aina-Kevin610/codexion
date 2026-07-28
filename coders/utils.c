@@ -59,7 +59,7 @@ void	print_coders(t_coder *coder)
  	while (temp->next)
  	{
  		printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
- 		temp = temp->next;
+ 		temp = temp->next->next;
  	}
  	printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
 }
@@ -70,7 +70,7 @@ void	free_coders(t_coder *coder)
 
 	while (coder)
 	{
-		tmp = coder->next;
+		tmp = coder->next->next;
 		free(coder);
 		coder = tmp;
 	}

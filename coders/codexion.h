@@ -19,11 +19,21 @@
 # include <string.h>
 # include <sys/time.h>
 
+typedef struct s_coder t_coder;
+
 typedef struct t_scheduler
 {
 	int	fifo;
 	int	edf;
 }	t_scheduler;
+
+typedef struct dongle
+{
+  int id;
+  int busy;
+  t_coder *next;
+  t_coder *prev;
+} t_dongle;
 
 typedef struct s_args
 {
@@ -38,7 +48,6 @@ typedef struct s_args
 	t_scheduler	scheduler;
 }	t_args;
 
-
 typedef struct s_coder
 {
   pthread_t       thread;
@@ -48,7 +57,8 @@ typedef struct s_coder
   int             is_burnout;
   t_args          *arguments;
   long long       last_compile_start;
-	struct s_coder	*next;
+	t_dongle	*next;
+  t_dongle  *prev;
 }	t_coder;
 
 

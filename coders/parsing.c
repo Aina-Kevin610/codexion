@@ -26,18 +26,23 @@ void init_coder_id(t_coder *coder)
     tmp->id = i;
     i++;
     tmp->compile_done = 0;
-    tmp = tmp->next;
+    tmp = tmp->next->next;
   }
 }
 
 t_coder *create_coder()
 {
   t_coder *new_coder;
+  t_dongle  *new_dongle;
+  new_dongle = (t_dongle *) malloc(sizeof(t_dongle));
   new_coder = (t_coder *) malloc(sizeof(t_coder));
-  if (!new_coder)
+  if (!new_coder || !new_dongle)
     return (0);
   new_coder->dongle_hold = 0;
-  new_coder->next = 0;
+  new_coder->next = new_dongle;
+  new_dongle->prev = new_coder;
+  new_dongle->next = NULL;
+  new_coder->prev = NULL;
   return (new_coder);
 }
 
@@ -48,9 +53,10 @@ void  add_coder(t_coder *coder)
   if (!coder)
     return;
   tmp = coder;
-  while(tmp->next)
-    tmp = tmp->next;
-  tmp->next = create_coder();
+  while(tmp->next->next)
+    tmp = tmp->next->next;
+  tmp->next->next = create_coder();
+  tmp->next->prev = tmp;
 }
 
 void  linking_coder(t_all *all)

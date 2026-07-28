@@ -14,7 +14,7 @@ int is_simulation_finished(t_all *all)
       all->stop = 0;
       return (0);
     }
-    tmp = tmp->next;
+    tmp = tmp->next->next;
   }
   all->stop = 1;
   pthread_mutex_unlock(&all->lock);

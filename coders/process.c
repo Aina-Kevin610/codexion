@@ -32,12 +32,12 @@ void  process(t_all *all)
   while(tmp)
   {
     pthread_create(&tmp->thread, NULL, (void *)coder_thread, tmp);
-    tmp = tmp->next;
+    tmp = tmp->next->next;
   }
   tmp = all->coder;
   while (tmp)
   {
     pthread_join(tmp->thread, NULL);
-    tmp = tmp->next;
+    tmp = tmp->next->next;
   }
 }
