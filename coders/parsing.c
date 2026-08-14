@@ -6,74 +6,80 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 13:58:53 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 15:11:37 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void init_coder_id(t_coder *coder)
+void	init_coder_id(t_coder *coder)
 {
-  t_coder *tmp;
-  int i;
-
-  if(!coder)
-    return;
-  i = 1;
-  tmp = coder;
-  while(tmp)
-  {
-    tmp->id = i;
-    i++;
-    tmp->compile_done = 0;
-    tmp = tmp->next->next;
-  }
+	t_coder	*tmp;
+	int		i;
+ 
+	if (!coder)
+		return ;
+	i = 1;
+	tmp = coder;
+	while (tmp)
+	{
+		tmp->id = i;
+		tmp->dongle_hold->id = i;
+		i++;
+		tmp->compile_done = 0;
+		tmp = tmp->next;
+	}
 }
 
-t_coder *create_coder()
+t_coder	*create_coder(void)
 {
-  t_coder *new_coder;
-  t_dongle  *new_dongle;
-  new_dongle = (t_dongle *) malloc(sizeof(t_dongle));
-  new_coder = (t_coder *) malloc(sizeof(t_coder));
-  if (!new_coder || !new_dongle)
-    return (0);
-  new_coder->dongle_hold = 0;
-  new_coder->next = new_dongle;
-  new_dongle->prev = new_coder;
-  new_dongle->next = NULL;
-  new_coder->prev = NULL;
-  return (new_coder);
+	t_coder		*new_coder;
+	t_dongle	*new_dongle;
+
+	new_dongle = (t_dongle *) malloc(sizeof(t_dongle));
+	if (!new_dongle)
+		return (NULL);
+	new_coder = (t_coder *) malloc(sizeof(t_coder));
+	if (!new_coder)
+	{
+		free(new_dongle);
+		return (NULL);
+	}
+	new_coder->dongle_hold = new_dongle;
+	new_coder->prev = NULL;
+	new_coder->next = NULL;
+	return (new_coder);
 }
 
-void  add_coder(t_coder *coder)
+void	add_coder(t_coder *coder)
 {
-  t_coder *tmp;
+	t_coder	*tmp;
 
-  if (!coder)
-    return;
-  tmp = coder;
-  while(tmp->next->next)
-    tmp = tmp->next->next;
-  tmp->next->next = create_coder();
-  tmp->next->prev = tmp;
+	if (!coder)
+		return ;
+	tmp = coder;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = create_coder();
+	if (tmp->next)
+		tmp->next->prev = tmp;
 }
 
-void  linking_coder(t_all *all)
+void	linking_coder(t_all *all)
 {
-  int i;
+	int	i;
 
-  i = 0;
-  while(i < (int)all->arguments->coders)
-  {
-    if(all->coder)
-      add_coder(all->coder);
-    else
-      all->coder = create_coder();
-    i++;
-  }
-  init_coder_id(all->coder);
-  all->coder->arguments = all->arguments;
+	i = 0;
+	while (i < (int)all->arguments->coders)
+	{
+		if (all->coder)
+			add_coder(all->coder);
+		else
+			all->coder = create_coder();
+		i++;
+	}
+	if (all->coder)
+		all->coder->arguments = all->arguments;
 }
 
 int	number_check(char *number)

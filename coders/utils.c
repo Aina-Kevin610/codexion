@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:26:43 by airandri          #+#    #+#             */
-/*   Updated: 2026/07/09 13:35:15 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 15:25:01 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,24 @@ void	print_coders(t_coder *coder)
     printf("No coder found");
     return;
   }
+  printf("Print next:\n");
  	while (temp->next)
  	{
- 		printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
- 		temp = temp->next->next;
+ 		printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
+ 		temp = temp->next;
  	}
- 	printf("(coder %d) %d\n", temp->id, temp->dongle_hold);
+ 	printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
+
+  temp = coder;
+  while(temp->next)
+    temp = temp->next;
+  printf("Print prev:\n");
+ 	while (temp->prev)
+ 	{
+ 		printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
+ 		temp = temp->prev;
+ 	}
+ 	printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
 }
 
 void	free_coders(t_coder *coder)
@@ -70,8 +82,9 @@ void	free_coders(t_coder *coder)
 
 	while (coder)
 	{
-		tmp = coder->next->next;
-		free(coder);
-		coder = tmp;
+		tmp = coder;
+		coder = coder->next;
+		free(tmp->dongle_hold);
+    free(tmp);
 	}
 }
