@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/14 15:22:10 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 15:40:30 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char *argv[])
 	linking_coder(&all);
 	init_coder_id(all.coder);
 	pthread_mutex_destroy(&all.lock);
+	*(all.coder->argument) = parsing(argv, all.arguments);
 	print_coders(all.coder);
 	free_coders(all.coder);
 	return (0);

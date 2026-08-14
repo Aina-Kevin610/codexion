@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/14 15:10:53 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 15:35:19 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_coder
 	int				is_burnout;
 	t_args			*arguments;
 	long long		last_compile_start;
+	t_args			*argument;
 	t_coder			*next;
 	t_coder			*prev;
 }	t_coder;
