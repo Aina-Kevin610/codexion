@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/15 21:09:32 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 00:03:16 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_coder
 	int				dongle_hold;
 	t_args			*argument;
 	pthread_t		thread;
+	pthread_mutex_t	lock;
 	t_dongle		*dongle;
 	t_coder			*next;
 	t_coder			*prev;
@@ -67,7 +68,6 @@ typedef	struct	s_all
 	t_coder			*coder;
 	int				stop;
 	long long		start_time;
-	pthread_mutex_t	lock;
 }	t_all;
 
 int			is_digit(char c);
@@ -85,6 +85,7 @@ void		linking_coder(t_all *coder);
 void		process(t_all *all);
 void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
+void		start_simulation(t_all *all);
 
 t_args	parsing(char **argument, t_args *arg);
 long long	get_actual_time();

@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/15 21:32:00 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/15 23:27:09 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_coder_id(t_coder *coder)
 	{
 		tmp->id = i;
 		tmp->dongle->id = i;
+		tmp->dongle_hold = 1;
 		i++;
 		tmp->compile_done = 0;
 		tmp = tmp->next;
@@ -80,6 +81,7 @@ void	linking_coder(t_all *all)
 	}
 	if (all->coder)
 		all->coder->argument = all->arguments;
+	init_coder_id(all->coder);
 }
 
 int	number_check(char *number)
