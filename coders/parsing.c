@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 01:36:24 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 02:44:41 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	add_coder(t_coder *coder)
 void	linking_coder(t_all *all)
 {
 	int	i;
+	t_coder	*last_coder;
 
 	i = 0;
 	while (i < (int)all->arguments->coders)
@@ -82,6 +83,10 @@ void	linking_coder(t_all *all)
 	if (all->coder)
 		all->coder->argument = all->arguments;
 	init_coder_id(all->coder);
+	last_coder = all->coder;
+	while(last_coder->next)
+		last_coder = last_coder->next;
+	all->coder->prev = last_coder;
 }
 
 int	number_check(char *number)

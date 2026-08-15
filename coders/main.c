@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 01:46:57 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 02:24:51 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,43 @@ void	init_all(t_all *all)
 	all->stop = 0;
 }
 
-void	init_mutex(t_coder *coder, pthread_mutex_t *lock)
+void	init_mutex(t_coder *coder)
 {
-	while(coder)
+	t_coder	*tmp;
+
+	tmp = coder;
+	while(tmp)
 	{
-		coder->dongle->lock = lock;
-		coder = coder->next;
+		pthread_mutex_init(&tmp->dongle->lock, NULL);
+		tmp = tmp->next;
+	}
+}
+
+void	destroy_mutex(t_coder *coder)
+{
+	t_coder	*tmp;
+
+	tmp = coder;
+	while(tmp)
+	{
+		pthread_mutex_destroy(&tmp->dongle->lock);
+		tmp = tmp->next;
 	}
 }
 
 int	main(int argc, char *argv[])
 {
 	t_all			all;
-	pthread_mutex_t	lock;
 	init_all(&all);
-	pthread_mutex_init(&lock, NULL);
 	if (arg_check(argc, argv, &all))
 	{
 		ft_error("ERROR - Invalid arguments!");
 		return (1);
 	}
 	linking_coder(&all);
-	init_mutex(all.coder, &lock);
-	// start_simulation(&all);
-	
-	t_coder	*coder;
-	coder = all.coder;
-	// while(coder)
-	// {
-	// 	pthread_mutex_destroy(&coder->lock);
-	// 	coder = coder->next;
-	// }
-	free_coders(all.coder);
+	init_mutex(all.coder);
+	start_simulation(&all);	
+	destroy_mutex(all.coder);
+	// free_coders(all.coder);
 	return (0);
 }

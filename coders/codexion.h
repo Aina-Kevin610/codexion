@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 01:40:34 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 02:19:33 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct dongle
 {
 	int				id;
 	int				busy;
-	pthread_mutex_t	*lock;
+	pthread_mutex_t	lock;
 }	t_dongle;
 
 typedef	struct	s_args
@@ -61,7 +61,6 @@ typedef struct s_coder
 	long long		last_compile_start;
 }	t_coder;
 
-
 typedef	struct	s_all
 {
 	t_args			*arguments;
@@ -82,7 +81,7 @@ void		debug(t_coder *coder);
 void		compile(t_coder *coder);
 void		refactor(t_coder *coder);
 void		linking_coder(t_all *coder);
-void		process(t_coder *coder);
+void		*process(void *coder);
 void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
 void		start_simulation(t_all *all);
