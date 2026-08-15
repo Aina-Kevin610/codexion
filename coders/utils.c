@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:26:43 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/14 15:25:01 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/15 21:33:52 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void print_args(t_args *args)
 {
     if (args == NULL)
     {
-        printf("Erreur : l'argument est NULL.\n");
+        printf("ERROR : No argument found.\n");
         return;
     }
 
@@ -57,23 +57,21 @@ void	print_coders(t_coder *coder)
     return;
   }
   printf("Print next:\n");
- 	while (temp->next)
+ 	while (temp)
  	{
- 		printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
+ 		printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold);
  		temp = temp->next;
  	}
- 	printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
-
+  
   temp = coder;
-  while(temp->next)
+  while (temp->next)
     temp = temp->next;
   printf("Print prev:\n");
- 	while (temp->prev)
+ 	while (temp)
  	{
- 		printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
+ 		printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold);
  		temp = temp->prev;
  	}
- 	printf("coder_id: %d | dongle_id: %d\n", temp->id, temp->dongle_hold->id);
 }
 
 void	free_coders(t_coder *coder)
@@ -84,7 +82,7 @@ void	free_coders(t_coder *coder)
 	{
 		tmp = coder;
 		coder = coder->next;
-		free(tmp->dongle_hold);
+		free(tmp->dongle);
     free(tmp);
 	}
 }

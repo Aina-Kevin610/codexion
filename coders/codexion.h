@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/14 15:35:19 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/15 21:09:32 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ typedef	struct	s_args
 
 typedef struct s_coder
 {
-	pthread_t		thread;
-	t_dongle		*dongle_hold;
 	int				id;
-	int				compile_done;
 	int				is_burnout;
-	t_args			*arguments;
-	long long		last_compile_start;
+	int				compile_done;
+	int				dongle_hold;
 	t_args			*argument;
+	pthread_t		thread;
+	t_dongle		*dongle;
 	t_coder			*next;
 	t_coder			*prev;
+	long long		last_compile_start;
 }	t_coder;
 
 
