@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 00:03:16 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 01:40:34 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ typedef	struct	t_scheduler
 
 typedef struct dongle
 {
-	int	id;
-	int	busy;
+	int				id;
+	int				busy;
+	pthread_mutex_t	*lock;
 }	t_dongle;
 
 typedef	struct	s_args
@@ -54,7 +55,6 @@ typedef struct s_coder
 	int				dongle_hold;
 	t_args			*argument;
 	pthread_t		thread;
-	pthread_mutex_t	lock;
 	t_dongle		*dongle;
 	t_coder			*next;
 	t_coder			*prev;
@@ -82,7 +82,7 @@ void		debug(t_coder *coder);
 void		compile(t_coder *coder);
 void		refactor(t_coder *coder);
 void		linking_coder(t_all *coder);
-void		process(t_all *all);
+void		process(t_coder *coder);
 void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
 void		start_simulation(t_all *all);
