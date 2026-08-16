@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 02:19:33 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 03:14:42 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void		*process(void *coder);
 void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
 void		start_simulation(t_all *all);
+void		*monitor(void *ptr);
 
 t_args	parsing(char **argument, t_args *arg);
 long long	get_actual_time();

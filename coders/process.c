@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:45 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 02:35:56 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 03:10:34 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,17 @@ void	*process(void *coders)
 	}
 	//take dongle
 	pthread_mutex_lock(&coder->dongle->lock);
-	if (coder->next && !coder->next->dongle->busy)
+	if (coder->dongle->busy == 0)
 	{
 		coder->dongle_hold += 1;
-		coder->next->dongle->busy = 1;
+		coder->dongle->busy = 1;
+		fprintf(stdout, "%d has taken a dongle\n", coder->id);
+	}
+	if (coder->prev->dongle->busy == 0)
+	{
+		coder->dongle_hold += 1;
+		coder->prev->dongle->busy = 1;
+		fprintf(stdout, "%d has taken a dongle\n", coder->id);
 	}
 	pthread_mutex_unlock(&coder->dongle->lock);
 

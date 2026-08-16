@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 02:24:51 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 03:22:57 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void	destroy_mutex(t_coder *coder)
 
 int	main(int argc, char *argv[])
 {
-	t_all			all;
+	t_all		all;
+	pthread_t	monitor_p;
+
+	pthread_create(&monitor_p, NULL, monitor, (void *)&all);
 	init_all(&all);
 	if (arg_check(argc, argv, &all))
 	{
@@ -78,6 +81,7 @@ int	main(int argc, char *argv[])
 	init_mutex(all.coder);
 	start_simulation(&all);	
 	destroy_mutex(all.coder);
+	pthread_join(monitor_p, NULL);
 	// free_coders(all.coder);
 	return (0);
 }
