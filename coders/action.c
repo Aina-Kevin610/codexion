@@ -6,27 +6,80 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:33 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 03:09:23 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 10:39:03 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void	compile(t_coder *coder)
+int	compile(t_coder *coder)
 {
-	if (coder->dongle_hold == 2)
-		fprintf(stdout, "%d is Compiling (number of dongle hold %d)\n", coder->id, coder->dongle_hold);
-	else
-		fprintf(stdout, "%d is OK OK OK (number of dongle hold %d)\n", coder->id, coder->dongle_hold);
+	coder->have_debug = 0;
+	if (coder->compile_done > coder->argument->nb_compiles)
+		return (0);
+	if (coder->dongle_hold == 2 && coder->have_compiled == 0)
+	{
+		fprintf(stdout, "%d is Compiling\n", coder->id);
+		coder->compile_done++;
+		coder->have_compiled = 1;
+	}
+	return (1);
 }
 
-void	debug(t_coder *coder)
+int	debug(t_coder *coder)
 {
-	printf("%d is Debuging\n", coder->id);
+	coder->have_refact = 0;
+	if (coder->have_debug == 0)
+	{
+		fprintf(stdout, "%d is Debuging\n", coder->id);
+		coder->have_debug = 1;
+		return (1);
+	}
+	return (0);
 }
 
-void	refactor(t_coder *coder)
+int	refactor(t_coder *coder)
 {
-	printf("%d is Refactoring\n", coder->id);
+	coder->have_compiled = 0;
+	if (coder->have_refact == 0)
+	{
+		fprintf(stdout, "%d is Refactoring\n", coder->id);
+		coder->have_refact = 1;
+		return (1);
+	}
+	return (0);
+
 }
 
+void	take_dongle(t_coder *coder)
+{
+	pthread_mutex_lock(&coder->dongle->lock);
+	pthread_mutex_lock(&coder->prev->dongle->lock);
+	if (coder->dongle->busy == 0 && coder->dongle_hold < 2)
+	{
+		coder->dongle_hold += 1;
+		coder->dongle->busy = 1;
+		fprintf(stdout, "%d has taken a dongle\n", coder->id);
+	}
+	if (coder->prev->dongle->busy == 0 && coder->dongle_hold < 2)
+	{
+		coder->dongle_hold += 1;
+		coder->prev->dongle->busy = 1;
+		fprintf(stdout, "%d has taken a dongle\n", coder->id);
+	}
+	pthread_mutex_unlock(&coder->dongle->lock);
+	pthread_mutex_unlock(&coder->prev->dongle->lock);
+}
+
+void put_down_dongle(t_coder *coder)
+{
+	pthread_mutex_lock(&coder->dongle->lock);
+	pthread_mutex_lock(&coder->prev->dongle->lock);
+	if (coder->dongle->busy == 1)
+		coder->dongle->busy = 0;
+	if (coder->prev->dongle->busy == 1)
+		coder->prev->dongle->busy = 0;
+	coder->dongle_hold = 0;
+	pthread_mutex_unlock(&coder->dongle->lock);
+	pthread_mutex_unlock(&coder->prev->dongle->lock);
+}

@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:18:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 03:09:54 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:02:08 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,12 @@ void	linking_coder(t_all *all)
 			all->coder = create_coder();
 		i++;
 	}
-	if (all->coder)
-		all->coder->argument = all->arguments;
+	last_coder = all->coder;
+	while (last_coder)
+	{
+		last_coder->argument = all->arguments;
+		last_coder = last_coder->next;	
+	}
 	init_coder_id(all->coder);
 	last_coder = all->coder;
 	while(last_coder->next)

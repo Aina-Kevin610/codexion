@@ -6,14 +6,14 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 00:00:00 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 03:45:52 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 10:47:25 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
 int	is_simulation_finished(t_all *all)
-{	
+{
 	t_coder	*tmp;
 
 	tmp = all->coder;
@@ -24,7 +24,7 @@ int	is_simulation_finished(t_all *all)
 			all->stop = 0;
 			return (0);
 		}
-		tmp = tmp->next->next;
+		tmp = tmp->next;
 	}
 	all->stop = 1;
 	return (1);
@@ -39,9 +39,7 @@ void	*monitor(void *ptr)
 	all = (t_all *)ptr;
 	pthread_mutex_lock(&lock);
 	while(is_simulation_finished(all))
-	{
 		pthread_cond_wait(&cond, &lock);
-	}
 	pthread_mutex_unlock(&lock);
 	return (NULL);
 }

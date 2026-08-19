@@ -6,44 +6,42 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:45 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 03:10:34 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 10:48:55 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
+int	act(t_coder *coder)
+{
+	int	signal;
+
+	signal = 1;
+	coder->have_compiled = 0;
+	take_dongle(coder);
+	signal *= compile(coder);
+	put_down_dongle(coder);
+	if (!signal)
+		return (signal);
+	signal *= debug(coder);
+	signal *= refactor(coder);
+	return (signal);
+}
+
 void	*process(void *coders)
 {
+	int		check;
 	t_coder	*coder;
 
-	coder = (t_coder *)coders;
 	if (!coders)
 	{
 		printf("ERROR - Processing failed");
 		return (NULL);
 	}
-	//take dongle
-	pthread_mutex_lock(&coder->dongle->lock);
-	if (coder->dongle->busy == 0)
-	{
-		coder->dongle_hold += 1;
-		coder->dongle->busy = 1;
-		fprintf(stdout, "%d has taken a dongle\n", coder->id);
-	}
-	if (coder->prev->dongle->busy == 0)
-	{
-		coder->dongle_hold += 1;
-		coder->prev->dongle->busy = 1;
-		fprintf(stdout, "%d has taken a dongle\n", coder->id);
-	}
-	pthread_mutex_unlock(&coder->dongle->lock);
-
-	//compile
-	compile(coder);
-	//debug
-	debug(coder);
-	//refactor
-	refactor(coder);
+	coder = (t_coder *)coders;
+	check = 1;
+	while(check)
+		check = act(coder);
 	return (NULL);
 }
 

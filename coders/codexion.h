@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/16 03:14:42 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 10:36:14 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct s_coder
 	int				id;
 	int				is_burnout;
 	int				compile_done;
+	int				have_compiled;
+	int				have_debug;
+	int				have_refact;
 	int				dongle_hold;
 	t_args			*argument;
 	pthread_t		thread;
@@ -74,12 +77,14 @@ int 		check_arg(char **argv);
 int			ft_error(char *message);
 int			number_check(char *coder);
 int			is_simulation_finished(t_all *all);
+int			compile(t_coder *coder);
+int			refactor(t_coder *coder);
+int			debug(t_coder *coder);
+void		take_dongle(t_coder *coder);
+void		put_down_dongle(t_coder *coder);
 void 		print_args(t_args *args);
 void		print_coders(t_coder *coder);
 void		assign_arg(char **init, t_args *arg);
-void		debug(t_coder *coder);
-void		compile(t_coder *coder);
-void		refactor(t_coder *coder);
 void		linking_coder(t_all *coder);
 void		*process(void *coder);
 void		init_coder_id(t_coder *coder);
