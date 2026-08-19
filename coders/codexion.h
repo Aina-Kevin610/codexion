@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/19 10:36:14 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 17:29:36 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ typedef	struct	s_all
 	long long		start_time;
 }	t_all;
 
+typedef struct	s_request
+{
+	int			id_coder;
+	int			deadline;
+	t_request	*parent;
+	t_request	*left_child;
+	t_request	*right_child;	
+}
+
 int			is_digit(char c);
 int 		check_arg(char **argv);
 int			ft_error(char *message);
@@ -91,7 +100,6 @@ void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
 void		start_simulation(t_all *all);
 void		*monitor(void *ptr);
-
-t_args	parsing(char **argument, t_args *arg);
+t_args		parsing(char **argument, t_args *arg);
 long long	get_actual_time();
 #endif

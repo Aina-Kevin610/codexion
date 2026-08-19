@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/19 10:46:31 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 15:54:38 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	arg_check(int argc, char *argv[], t_all *all)
 void	init_all(t_all *all)
 {
 	t_args	*arguments;
-	t_coder	*coder;
 
 	arguments = (t_args *) malloc(sizeof(t_args));
 	if (!arguments)
@@ -33,8 +32,6 @@ void	init_all(t_all *all)
 		ft_error("ERROR - Allocation error");
 		return ;
 	}
-	coder = all->coder;
-	
 	all->arguments = arguments;
 	all->start_time = get_actual_time();
 	all->coder = NULL;
@@ -68,7 +65,7 @@ void	destroy_mutex(t_coder *coder)
 int	main(int argc, char *argv[])
 {
 	t_all		all;
-	// pthread_t	monitor_p;
+	pthread_t	monitor_p;
 
 	init_all(&all);
 	if (arg_check(argc, argv, &all))
@@ -78,10 +75,10 @@ int	main(int argc, char *argv[])
 	}
 	linking_coder(&all);
 	init_mutex(all.coder);
-	// pthread_create(&monitor_p, NULL, monitor, (void *)&all);
+	pthread_create(&monitor_p, NULL, monitor, (void *)&all);
 	start_simulation(&all);
 	destroy_mutex(all.coder);
-	// pthread_join(monitor_p, NULL);
-	// free_coders(all.coder);
+	pthread_join(monitor_p, NULL);
+	free_coders(all.coder);
 	return (0);
 }
