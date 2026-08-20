@@ -13,7 +13,10 @@ SRCS		= main.c \
 			  action.c \
 			  process.c \
 			  monitor.c \
-			  request.c
+			  request.c \
+			  parsing_utils.c \
+			  take_dongle.c \
+			  heap_utils.c
 
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

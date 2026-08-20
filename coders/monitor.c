@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 00:00:00 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/19 10:47:25 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 11:09:11 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	is_simulation_finished(t_all *all)
 	return (1);
 }
 
-void	*monitor(void *ptr)
-{
-	t_all			*all;
-	pthread_mutex_t	lock;
-	pthread_cond_t	cond;
+// void	*monitor(void *ptr)
+// {
+// 	t_all			*all;
+// 	pthread_mutex_t	lock;
+// 	pthread_cond_t	cond;
 
-	all = (t_all *)ptr;
-	pthread_mutex_lock(&lock);
-	while(is_simulation_finished(all))
-		pthread_cond_wait(&cond, &lock);
-	pthread_mutex_unlock(&lock);
-	return (NULL);
-}
+// 	all = (t_all *)ptr;
+// 	pthread_mutex_lock(&lock);
+// 	while(is_simulation_finished(all))
+// 		pthread_cond_wait(&cond, &lock);
+// 	pthread_mutex_unlock(&lock);
+// 	return (NULL);
+// }

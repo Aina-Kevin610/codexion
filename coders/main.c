@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 10:02:07 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/19 15:54:38 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 13:40:05 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,9 @@ void	init_all(t_all *all)
 	all->stop = 0;
 }
 
-void	init_mutex(t_coder *coder)
-{
-	t_coder	*tmp;
-
-	tmp = coder;
-	while(tmp)
-	{
-		pthread_mutex_init(&tmp->dongle->lock, NULL);
-		tmp = tmp->next;
-	}
-}
-
-void	destroy_mutex(t_coder *coder)
-{
-	t_coder	*tmp;
-
-	tmp = coder;
-	while(tmp)
-	{
-		pthread_mutex_destroy(&tmp->dongle->lock);
-		tmp = tmp->next;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	t_all		all;
-	pthread_t	monitor_p;
 
 	init_all(&all);
 	if (arg_check(argc, argv, &all))
@@ -74,11 +49,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	linking_coder(&all);
-	init_mutex(all.coder);
-	pthread_create(&monitor_p, NULL, monitor, (void *)&all);
+	pthread_mutex_init(&all.lock, NULL);
 	start_simulation(&all);
-	destroy_mutex(all.coder);
-	pthread_join(monitor_p, NULL);
+	pthread_mutex_destroy(&all.lock);
 	free_coders(all.coder);
 	return (0);
 }

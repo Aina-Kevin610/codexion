@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:33 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/19 16:12:01 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 15:14:24 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	compile(t_coder *coder)
 		coder->compile_done++;
 		coder->have_compiled = 1;
 		usleep(coder->argument->compile);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int	debug(t_coder *coder)
@@ -51,38 +52,4 @@ int	refactor(t_coder *coder)
 		return (1);
 	}
 	return (0);
-}
-
-void	take_dongle(t_coder *coder)
-{
-	pthread_mutex_lock(&coder->dongle->lock);
-	pthread_mutex_lock(&coder->prev->dongle->lock);
-	if (coder->dongle->busy == 0 && coder->dongle_hold < 2)
-	{
-		coder->dongle_hold += 1;
-		coder->dongle->busy = 1;
-		fprintf(stdout, "%d has taken a dongle\n", coder->id);
-	}
-	if (coder->prev->dongle->busy == 0 && coder->dongle_hold < 2)
-	{
-		coder->dongle_hold += 1;
-		coder->prev->dongle->busy = 1;
-		fprintf(stdout, "%d has taken a dongle\n", coder->id);
-	}
-	pthread_mutex_unlock(&coder->dongle->lock);
-	pthread_mutex_unlock(&coder->prev->dongle->lock);
-}
-
-void put_down_dongle(t_coder *coder)
-{
-	pthread_mutex_lock(&coder->dongle->lock);
-	pthread_mutex_lock(&coder->prev->dongle->lock);
-	if (coder->dongle->busy == 1)
-		coder->dongle->busy = 0;		
-	if (coder->prev->dongle->busy == 1)
-		coder->prev->dongle->busy = 0;
-	coder->dongle_hold = 0;
-	pthread_mutex_unlock(&coder->dongle->lock);
-	pthread_mutex_unlock(&coder->prev->dongle->lock);
-	usleep(coder->argument->dongle_cooldown);
 }
