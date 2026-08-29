@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:45 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/20 15:23:30 by airandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 16:23:30 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,15 @@ int	act(t_coder *coder)
 void	*process(void *coders)
 {
 	int		check;
-	t_coder	*coder;
 
 	if (!coders)
 	{
 		printf("ERROR - Processing failed");
 		return (NULL);
 	}
-	coder = (t_coder *)coders;
 	check = 1;
 	while (check)
-		check = act(coder);
+		check = act((t_coder *)coders);
 	return (NULL);
 }
 
