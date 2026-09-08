@@ -12,3 +12,24 @@
 
 #include "codexion.h"
 
+t_request	*create_request(t_coder *coder)
+{
+	t_request	*request;
+
+	request = malloc(sizeof(t_request));
+	if (!(request && coder))
+		return (NULL);
+	request->coder_id = coder->id;
+	request->deadline = 0;
+	request->request_time = get_actual_time();
+	request->child = NULL;
+	request->parent = NULL;
+	return (request);
+}
+
+// int	request(t_coder *coder)
+// {
+// 	if (!coder)
+// 		return (0);
+
+// }
