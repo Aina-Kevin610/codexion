@@ -46,6 +46,7 @@ t_coder	*create_coder(void)
 		free(new_dongle);
 		return (NULL);
 	}
+	new_dongle->heap_size = 0;
 	new_coder->dongle = new_dongle;
 	new_coder->prev = NULL;
 	new_coder->next = NULL;

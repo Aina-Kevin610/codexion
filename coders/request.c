@@ -27,9 +27,30 @@ t_request	*create_request(t_coder *coder)
 	return (request);
 }
 
-// int	request(t_coder *coder)
+// static void	heapify(t_coder *coder)
 // {
-// 	if (!coder)
-// 		return (0);
+// 	t_request	*tmp;
 
+// 	if (coder->all->arguments->scheduler->fifo)
+// 	{
+// 		if (coder->dongle->heap_size == 1)
+// 		{
+// 			if ()
+// 		}
+// 	}
+// 	else
+// 	{
+
+// 	}
 // }
+
+int	request(t_coder *coder)
+{
+	t_request	*request;
+	if (!coder)
+		return (0);
+	request = create_request(coder);
+	coder->dongle->request[coder->dongle->heap_size] = request;
+	coder->prev->dongle->request[coder->dongle->heap_size] = request;
+	return (1);
+}
