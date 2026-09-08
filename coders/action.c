@@ -15,14 +15,14 @@
 int	compile(t_coder *coder)
 {
 	coder->have_debug = 0;
-	if (coder->compile_done >= coder->argument->nb_compiles)
+	if (coder->compile_done >= coder->all->arguments->nb_compiles)
 		return (0);
 	if (coder->dongle_hold == 2 && coder->have_compiled == 0)
 	{
 		fprintf(stdout, "%d is compiling\n", coder->id);
 		coder->compile_done++;
 		coder->have_compiled = 1;
-		usleep(coder->argument->compile);
+		usleep(coder->all->arguments->compile);
 		return (1);
 	}
 	return (0);
@@ -35,7 +35,7 @@ int	debug(t_coder *coder)
 	{
 		fprintf(stdout, "%d is debugging\n", coder->id);
 		coder->have_debug = 1;
-		usleep(coder->argument->debug);
+		usleep(coder->all->arguments->debug);
 		return (1);
 	}
 	return (0);
@@ -48,7 +48,7 @@ int	refactor(t_coder *coder)
 	{
 		fprintf(stdout, "%d is refactoring\n", coder->id);
 		coder->have_refact = 1;
-		usleep(coder->argument->refactor);
+		usleep(coder->all->arguments->refactor);
 		return (1);
 	}
 	return (0);

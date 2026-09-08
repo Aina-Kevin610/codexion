@@ -111,10 +111,4 @@ void		*monitor(void *ptr);
 t_args		parsing(char **argument, t_args *arg);
 long long	get_actual_time(void);
 
-//request
-t_request	*create_request(t_coder *coder);
-void		heap_push(t_dongle *dongle, t_request *req, t_scheduler *sch);
-int			request(t_coder *coder);
-t_request	*heap_top(t_dongle *dongle);
-void		heap_remove(t_dongle *dongle, t_request *req);
 #endif

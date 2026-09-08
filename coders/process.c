@@ -18,10 +18,10 @@ int	act(t_coder *coder)
 
 	signal = 1;
 	coder->have_compiled = 0;
-	request(coder);
-	take_dongle(coder);
+	// request(coder);
+	// take_dongle(coder);
 	signal *= compile(coder);
-	put_down_dongle(coder);
+	// put_down_dongle(coder);
 	if (!signal)
 		return (signal);
 	signal *= debug(coder);
@@ -35,7 +35,7 @@ void	*process(void *coders)
 
 	if (!coders)
 	{
-		printf("ERROR - Processing failed");
+		fprintf(stderr, "ERROR - Processing failed");
 		return (NULL);
 	}
 	check = 1;

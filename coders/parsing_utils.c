@@ -80,13 +80,13 @@ void	linking_coder(t_all *all)
 			all->coder = create_coder();
 		i++;
 	}
-	last_coder = all->coder;
-	while (last_coder)
-	{
-		last_coder->argument = all->arguments;
-		last_coder->all = all;
-		last_coder = last_coder->next;
-	}
+	// last_coder = all->coder;
+	// while (last_coder)
+	// {
+	// 	last_coder->argument = all->arguments;
+	// 	last_coder->all = all;
+	// 	last_coder = last_coder->next;
+	// }
 	init_coder_id(all->coder);
 	last_coder = all->coder;
 	while (last_coder->next)
