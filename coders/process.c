@@ -18,8 +18,8 @@ int	act(t_coder *coder)
 
 	signal = 1;
 	coder->have_compiled = 0;
-	// request(coder);
-	// take_dongle(coder);
+	request(coder);
+	take_dongle(coder);
 	signal *= compile(coder);
 	// put_down_dongle(coder);
 	if (!signal)

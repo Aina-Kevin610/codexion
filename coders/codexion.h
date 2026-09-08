@@ -111,4 +111,10 @@ void		*monitor(void *ptr);
 t_args		parsing(char **argument, t_args *arg);
 long long	get_actual_time(void);
 
+
+// request
+
+int			request(t_coder *coder);
+t_request	*create_request(t_coder *coder);
+
 #endif
