@@ -16,16 +16,17 @@ int	act(t_coder *coder)
 {
 	int	signal;
 
-	signal = 1;
+	signal = 0;
+	printf("%d\n", coder->id);
 	coder->have_compiled = 0;
 	request(coder);
 	take_dongle(coder);
-	signal *= compile(coder);
+	// signal *= compile(coder);
 	// put_down_dongle(coder);
 	if (!signal)
 		return (signal);
-	signal *= debug(coder);
-	signal *= refactor(coder);
+	// signal *= debug(coder);
+	// signal *= refactor(coder);
 	return (signal);
 }
 

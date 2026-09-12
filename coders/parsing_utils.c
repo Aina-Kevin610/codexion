@@ -70,6 +70,7 @@ void	add_coder(t_coder *coder)
 void	linking_coder(t_all *all)
 {
 	int		i;
+	t_coder	*coder;
 	t_coder	*last_coder;
 
 	i = 0;
@@ -82,6 +83,13 @@ void	linking_coder(t_all *all)
 		i++;
 	}
 	init_coder_id(all->coder);
+	coder = all->coder;
+	while (coder)
+	{
+		coder->all = all;
+		coder->argument = all->arguments;
+		coder = coder->next;
+	}
 	last_coder = all->coder;
 	while (last_coder->next)
 		last_coder = last_coder->next;

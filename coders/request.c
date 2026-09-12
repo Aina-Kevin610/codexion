@@ -51,6 +51,6 @@ int	request(t_coder *coder)
 		return (0);
 	request = create_request(coder);
 	coder->dongle->request[coder->dongle->heap_size] = request;
-	coder->prev->dongle->request[coder->dongle->heap_size] = request;
+	coder->prev->dongle->request[coder->prev->dongle->heap_size] = request;
 	return (1);
 }
