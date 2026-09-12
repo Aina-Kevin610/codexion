@@ -32,11 +32,9 @@ static int	able_to_compile(t_coder *coder)
 
 int take_dongle(t_coder *coder)
 {
-	if (!coder)
-		return (0);
 	pthread_mutex_lock(&coder->all->lock);
 	while (!able_to_compile(coder))
-		pthread_cond_wait(&coder->all->cond, &coder->all->lock);
+		pthread_cond_wait(&coder->all->cond, &coder->all->lock);]
 	pthread_mutex_unlock(&(coder->all->lock));
 	return (coder->dongle_hold);
 }
