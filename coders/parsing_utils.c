@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:20:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/20 15:21:06 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/13 06:40:14 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	linking_coder(t_all *all)
 	while (coder)
 	{
 		coder->all = all;
-		coder->argument = all->arguments;
 		coder = coder->next;
 	}
 	last_coder = all->coder;

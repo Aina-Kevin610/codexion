@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:45 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/29 16:23:30 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/13 06:43:41 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	act(t_coder *coder)
 	int	signal;
 
 	signal = 0;
-	printf("%d\n", coder->id);
 	coder->have_compiled = 0;
+	coder->step = 1;
 	request(coder);
 	take_dongle(coder);
-	// signal *= compile(coder);
+	signal *= compile(coder);
 	// put_down_dongle(coder);
 	if (!signal)
 		return (signal);
-	// signal *= debug(coder);
-	// signal *= refactor(coder);
+	signal *= debug(coder);
+	signal *= refactor(coder);
 	return (signal);
 }
 

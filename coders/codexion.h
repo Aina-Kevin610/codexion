@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/20 15:42:17 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/13 06:31:55 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ typedef struct s_coder
 	int				id;
 	int				is_burnout;
 	int				compile_done;
+	int				step;
 	int				have_compiled;
 	int				have_debug;
 	int				have_refact;
 	int				dongle_hold;
-	t_args			*argument;
 	pthread_t		thread;
 	t_dongle		*dongle;
 	t_coder			*next;
