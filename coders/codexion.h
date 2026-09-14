@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/13 06:31:55 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 11:06:25 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct dongle
 	int				heap_size;
 	long long		free_at;
 	t_request		*request[2];
+	pthread_mutex_t	lock;
 }	t_dongle;
 
 typedef struct s_args
