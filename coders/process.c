@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:45 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/13 06:43:41 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:32:17 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	act(t_coder *coder)
 {
 	int	signal;
 
-	signal = 0;
-	coder->have_compiled = 0;
+	signal = 1;
 	coder->step = 1;
 	request(coder);
 	take_dongle(coder);

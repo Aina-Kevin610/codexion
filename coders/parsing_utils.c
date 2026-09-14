@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:20:16 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/14 11:18:05 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:51:12 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_coder	*create_coder(void)
 	}
 	new_dongle->heap_size = 0;
 	pthread_mutex_init(&new_dongle->lock, NULL);
+	pthread_cond_init(&new_dongle->cond, NULL);
 	new_coder->dongle = new_dongle;
 	new_coder->prev = NULL;
 	new_coder->next = NULL;

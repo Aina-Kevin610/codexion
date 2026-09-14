@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:13:51 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/13 06:23:40 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:50:07 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,27 @@ static void	heap_pop(t_dongle *dongle)
 
 static int	able_to_compile(t_coder *coder)
 {
-	if (coder->dongle->request[0]->id_coder != coder->id)
-		return (0);
-	if (coder->prev->dongle->request[0]->id_coder != coder->id)
-		return (0);
-	coder->dongle_hold += 2;
-	heap_pop(coder->dongle);
-	heap_pop(coder->prev->dongle);
-	return (1);
+	if (coder->dongle->request[0]->id_coder == coder->id)
+	{
+		coder->dongle_hold++;
+		print_log(coder, 4);
+		heap_pop(coder->dongle);
+	}
+	if (coder->prev->dongle->request[0]->id_coder == coder->id)
+	{
+		coder->dongle_hold++;
+		print_log(coder, 4);
+		heap_pop(coder->prev->dongle);
+	}
+	if (coder->dongle_hold == 2)
+		return (1);
+	return (0);
 }
 
 int take_dongle(t_coder *coder)
 {
-	pthread_mutex_lock(&coder->all->lock);
-	while (!able_to_compile(coder))
+	pthread_mutex_lock(&coder->dongle->lock);
+	while (able_to_compile(coder) == 0)
 		pthread_cond_wait(&coder->all->cond, &coder->all->lock);
 	pthread_mutex_unlock(&(coder->all->lock));
 	return (coder->dongle_hold);

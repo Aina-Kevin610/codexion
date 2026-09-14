@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/14 11:06:25 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:50:38 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct dongle
 	long long		free_at;
 	t_request		*request[2];
 	pthread_mutex_t	lock;
+	pthread_cond_t	cond;
 }	t_dongle;
 
 typedef struct s_args
@@ -68,7 +69,6 @@ typedef struct s_coder
 	t_coder			*prev;
 	long long		last_compile_start;
 	t_all			*all;
-	t_request		*request;
 }	t_coder;
 
 typedef struct s_all
@@ -109,6 +109,7 @@ void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
 void		start_simulation(t_all *all);
 void		*monitor(void *ptr);
+void		print_log(t_coder *coder, int step);
 t_args		parsing(char **argument, t_args *arg);
 long long	get_actual_time(void);
 
