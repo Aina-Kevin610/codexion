@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/14 14:50:38 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 15:36:19 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			compile(t_coder *coder);
 int			refactor(t_coder *coder);
 int			debug(t_coder *coder);
 int			take_dongle(t_coder *coder);
-void		put_down_dongle(t_coder *coder);
+void		release_dongle(t_coder *coder);
 void		print_args(t_args *args);
 void		print_coders(t_coder *coder);
 void		assign_arg(char **init, t_args *arg);

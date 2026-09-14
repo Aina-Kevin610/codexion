@@ -6,11 +6,12 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:45 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/14 14:32:17 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 15:36:04 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+ 
 
 int	act(t_coder *coder)
 {
@@ -21,7 +22,7 @@ int	act(t_coder *coder)
 	request(coder);
 	take_dongle(coder);
 	signal *= compile(coder);
-	// put_down_dongle(coder);
+	release_dongle(coder);
 	if (!signal)
 		return (signal);
 	signal *= debug(coder);

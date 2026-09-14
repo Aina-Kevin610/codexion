@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:35:33 by airandri          #+#    #+#             */
-/*   Updated: 2026/09/14 14:45:01 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:58:59 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	print_heap(t_coder *coder)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	printf("[");
-	while (coder->dongle->request[i])
+	while (i < coder->dongle->heap_size)
 	{
 		printf("%d ", coder->dongle->request[i]->id_coder);
 		i++;
 	}
 	printf("]\t");
-
 	i = 0;
 	printf("[");
-	while (coder->prev->dongle->request[i])
+	while (i < coder->prev->dongle->heap_size)
 	{
 		printf("%d ", coder->prev->dongle->request[i]->id_coder);
 		i++;
@@ -46,18 +47,19 @@ void	print_log(t_coder *coder, int step)
 	{
 		fprintf(stdout, "%lld %d is debugging\n",
 			get_actual_time() - coder->all->start_time, coder->id);
-
+		print_heap(coder);
 	}
 	else if (step == 3)
 	{
 		fprintf(stdout, "%lld %d is refactoring\n",
 			get_actual_time() - coder->all->start_time, coder->id);
-		
+		print_heap(coder);	
 	}
 	else if (step == 4)
 	{
 		fprintf(stdout, "%lld %d has taken a dongle\n",
 			get_actual_time() - coder->all->start_time, coder->id);
+		print_heap(coder);
 	}
 	else
 		printf("none\n");
