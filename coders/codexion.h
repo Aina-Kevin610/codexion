@@ -6,7 +6,7 @@
 /*   By: airandri <airandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 09:58:06 by airandri          #+#    #+#             */
-/*   Updated: 2026/08/20 15:42:17 by airandri         ###   ########.fr       */
+/*   Updated: 2026/09/14 15:36:19 by airandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct dongle
 	int				heap_size;
 	long long		free_at;
 	t_request		*request[2];
+	pthread_mutex_t	lock;
+	pthread_cond_t	cond;
 }	t_dongle;
 
 typedef struct s_args
@@ -56,18 +58,17 @@ typedef struct s_coder
 	int				id;
 	int				is_burnout;
 	int				compile_done;
+	int				step;
 	int				have_compiled;
 	int				have_debug;
 	int				have_refact;
 	int				dongle_hold;
-	t_args			*argument;
 	pthread_t		thread;
 	t_dongle		*dongle;
 	t_coder			*next;
 	t_coder			*prev;
 	long long		last_compile_start;
 	t_all			*all;
-	t_request		*request;
 }	t_coder;
 
 typedef struct s_all
@@ -85,8 +86,6 @@ typedef struct s_request
 	int			id_coder;
 	int			deadline;
 	int			request_time;
-	t_request	*parent;
-	t_request	*child;	
 }	t_request;
 
 int			is_digit(char c);
@@ -98,7 +97,7 @@ int			compile(t_coder *coder);
 int			refactor(t_coder *coder);
 int			debug(t_coder *coder);
 int			take_dongle(t_coder *coder);
-void		put_down_dongle(t_coder *coder);
+void		release_dongle(t_coder *coder);
 void		print_args(t_args *args);
 void		print_coders(t_coder *coder);
 void		assign_arg(char **init, t_args *arg);
@@ -108,6 +107,7 @@ void		init_coder_id(t_coder *coder);
 void		free_coders(t_coder *coder);
 void		start_simulation(t_all *all);
 void		*monitor(void *ptr);
+void		print_log(t_coder *coder, int step);
 t_args		parsing(char **argument, t_args *arg);
 long long	get_actual_time(void);
 
