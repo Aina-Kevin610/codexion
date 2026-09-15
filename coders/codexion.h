@@ -86,8 +86,6 @@ typedef struct s_request
 	int			id_coder;
 	int			deadline;
 	int			request_time;
-	t_request	*parent;
-	t_request	*child;	
 }	t_request;
 
 int			is_digit(char c);

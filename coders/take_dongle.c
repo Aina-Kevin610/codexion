@@ -50,11 +50,11 @@ void	release_dongle(t_coder *coder)
 	pthread_mutex_lock(&coder->dongle->lock);
 	coder->dongle->busy = 0;
 	coder->dongle_hold--;
-	pthread_cond_broadcast(&coder->dongle->cond);
+	pthread_cond_signal(&coder->dongle->cond);
 	pthread_mutex_unlock(&coder->dongle->lock);
 	pthread_mutex_lock(&coder->prev->dongle->lock);
 	coder->prev->dongle->busy = 0;
 	coder->dongle_hold--;
-	pthread_cond_broadcast(&coder->prev->dongle->cond);
+	pthread_cond_signal(&coder->prev->dongle->cond);
 	pthread_mutex_unlock(&coder->prev->dongle->lock);
 }

@@ -22,8 +22,6 @@ t_request	*create_request(t_coder *coder)
 	request->id_coder = coder->id;
 	request->deadline = 0;
 	request->request_time = get_actual_time();
-	request->child = NULL;
-	request->parent = NULL;
 	return (request);
 }
 
